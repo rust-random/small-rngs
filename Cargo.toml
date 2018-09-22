@@ -1,0 +1,21 @@
+[package]
+name = "small-rngs"
+version = "0.0.0"
+authors = ["The Rand Project Developers"]
+license = "MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/rust-random/small-rngs"
+# documentation = "https://docs.rs/small-rngs"
+# homepage = "https://github.com/rust-random/small-rngs"
+description = """
+Small, simple pseudo-random number generators
+"""
+keywords = ["random", "rng", "prng"]
+categories = ["algorithms", "no-std"]
+
+# [badges]
+# travis-ci = { repository = "rust-random/rand" }
+# appveyor = { repository = "dhardy/rand" }
+
+[workspace]
+members = []
