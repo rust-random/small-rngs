@@ -1,7 +1,5 @@
 # Small RNGs
 
-[![License](https://img.shields.io/crates/l/small-rngs.svg)](https://github.com/rust-random/small-rngs#license)
-
 This repository houses a collection of random number generators for use with the
 [Rand project](https://github.com/rust-random/rand).
 
