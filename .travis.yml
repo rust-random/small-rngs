@@ -1,0 +1,78 @@
+language: rust
+sudo: false
+
+# We use a simpler test set-up than for the main Rand repo since there should
+# be no OS-specific code here. We do however test multiple Rust versions and
+# both ARM and MIPS (emulated) platforms to test against CPU dependence.
+matrix:
+  include:
+    - rust: 1.22.0
+      env: DESCRIPTION="pinned stable Rust release"
+
+    - rust: stable
+      env: DESCRIPTION="stable Rust release, macOS"
+      os: osx
+
+    - rust: beta
+      env: DESCRIPTION="beta Rust release"
+
+    - rust: nightly
+      env: DESCRIPTION="nightly features, benchmarks, documentation"
+      install:
+        - cargo --list | egrep "^\s*deadlinks$" -q || cargo install cargo-deadlinks
+        - cargo deadlinks -V
+      before_script:
+        - pip install 'travis-cargo<0.2' --user && export PATH=$HOME/.local/bin:$PATH
+      script:
+        - cargo test
+        - cargo test --benches
+        # remove cached documentation, otherwise files from previous PRs can get included
+        - rm -rf target/doc
+        - cargo doc --no-deps --all --all-features
+        - cargo deadlinks --dir target/doc
+      after_success:
+        - travis-cargo --only nightly doc-upload
+    # Trust cross-built/emulated targets. We must repeat all non-default values.
+    - rust: stable
+      sudo: required
+      dist: trusty
+      services: docker
+      env: DESCRIPTION="Linux (MIPS, big-endian)" TARGET=mips-unknown-linux-gnu
+      install:
+        - sh utils/ci/install.sh
+        - source ~/.cargo/env || true
+      script:
+        - bash utils/ci/script.sh
+    - rust: stable
+      sudo: required
+      dist: trusty
+      services: docker
+      env: DESCRIPTION="Android (ARMv7)" TARGET=armv7-linux-androideabi
+      install:
+        - sh utils/ci/install.sh
+        - source ~/.cargo/env || true
+      script:
+        - bash utils/ci/script.sh
+
+before_install:
+  - set -e
+  - rustup self update
+
+# default script; not used by Trust targets:
+script:
+  - cargo test
+
+after_script: set +e
+
+cache: cargo
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+  - chmod -R a+r $HOME/.cargo
+
+env:
+  global:
+    secure: "BdDntVHSompN+Qxz5Rz45VI4ZqhD72r6aPl166FADlnkIwS6N6FLWdqs51O7G5CpoMXEDvyYrjmRMZe/GYLIG9cmqmn/wUrWPO+PauGiIuG/D2dmfuUNvSTRcIe7UQLXrfP3yyfZPgqsH6pSnNEVopquQKy3KjzqepgriOJtbyY="
+
+notifications:
+  email:
+    on_success: never
