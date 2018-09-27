@@ -31,4 +31,5 @@ install:
 build: false
 
 test_script:
-  - cargo test
+  - cargo test --all
+  - cargo test --package rand_pcg --features serde1

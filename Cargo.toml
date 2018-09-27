@@ -18,4 +18,4 @@ categories = ["algorithms", "no-std"]
 # appveyor = { repository = "dhardy/rand" }
 
 [workspace]
-members = []
+members = ["rand_pcg"]

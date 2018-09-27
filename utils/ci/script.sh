@@ -4,15 +4,12 @@ set -ex
 
 main() {
     if [ ! -z $DISABLE_TESTS ]; then    # tests are disabled
-        cross build --target $TARGET --release
+        cross build --all --target $TARGET --release
         return
     fi
 
-    if [ ! -z $NIGHTLY ]; then  # have nightly Rust
-        cross test --target $TARGET
-    else    # have stable Rust
-        cross test --target $TARGET
-    fi
+    cross test --target $TARGET --all
+    cross test --target $TARGET --package rand_pcg --features serde1
 }
 
 # we don't run the "test phase" when doing deploys
