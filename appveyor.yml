@@ -32,4 +32,5 @@ build: false
 
 test_script:
   - cargo test --all
-  - cargo test --package rand_pcg --features serde1
+  - cargo test --manifest-path rand_pcg/Cargo.toml --package rand_pcg --features serde1
+  - cargo test --manifest-path rand_xorshift/Cargo.toml --package rand_xorshift --features serde1

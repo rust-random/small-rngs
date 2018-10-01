@@ -15,13 +15,13 @@ categories = ["algorithms", "no-std"]
 
 [badges]
 travis-ci = { repository = "rust-random/rand" }
-appveyor = { repository = "dhardy/rand" }
+appveyor = { repository = "rust-random/rand" }
 
 [features]
 serde1 = ["serde", "serde_derive"]
 
 [dependencies]
-rand_core = { path = "../rand_core", version = ">=0.2, <0.4", default-features=false }
+rand_core = { version = ">=0.2, <0.4", default-features=false }
 serde = { version = "1", optional = true }
 serde_derive = { version = "^1.0.38", optional = true }
 
