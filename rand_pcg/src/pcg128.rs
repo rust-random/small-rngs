@@ -26,6 +26,8 @@ use rand_core::{RngCore, SeedableRng, Error, impls, le};
 /// selected this variant for 64-bit generation over `setseq_xsl_rr_128_64`
 /// (also known as `pcg64`), since it is faster and appears to be of
 /// sufficiently high quality.
+/// 
+/// Note: this RNG is only available using Rust 1.26 or later.
 #[derive(Clone)]
 #[cfg_attr(feature="serde1", derive(Serialize,Deserialize))]
 pub struct Mcg128Xsl64 {

@@ -12,6 +12,7 @@ Selected PCG random number generators
 """
 keywords = ["random", "rng", "pcg"]
 categories = ["algorithms", "no-std"]
+build = "build.rs"
 
 [badges]
 travis-ci = { repository = "rust-random/rand" }
@@ -29,3 +30,6 @@ serde_derive = { version = "^1.0.38", optional = true }
 # This is for testing serde, unfortunately we can't specify feature-gated dev
 # deps yet, see: https://github.com/rust-lang/cargo/issues/1596
 bincode = "1"
+
+[build-dependencies]
+rustc_version = "0.2"
