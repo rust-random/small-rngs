@@ -10,8 +10,9 @@
 
 //! PCG random number generators
 
-use core::{fmt};
-use rand_core::{RngCore, SeedableRng, Error, impls, le};
+use core::fmt;
+use core::mem::transmute;
+use rand_core::{RngCore, SeedableRng, Error, le, impls};
 
 // This is the default multiplier used by PCG for 64-bit state.
 const MULTIPLIER: u64 = 6364136223846793005;
@@ -114,7 +115,23 @@ impl RngCore for Lcg64Xsh32 {
 
     #[inline]
     fn fill_bytes(&mut self, dest: &mut [u8]) {
-        impls::fill_bytes_via_next(self, dest)
+        // specialisation of impls::fill_bytes_via_next; approx 40% faster
+        let mut left = dest;
+        while left.len() >= 4 {
+            let (l, r) = {left}.split_at_mut(4);
+            left = r;
+            let chunk: [u8; 4] = unsafe {
+                transmute(self.next_u32().to_le())
+            };
+            l.copy_from_slice(&chunk);
+        }
+        let n = left.len();
+        if n > 0 {
+            let chunk: [u8; 4] = unsafe {
+                transmute(self.next_u32().to_le())
+            };
+            left.copy_from_slice(&chunk[..n]);
+        }
     }
 
     #[inline]

@@ -13,8 +13,9 @@
 // This is the default multiplier used by PCG for 64-bit state.
 const MULTIPLIER: u128 = 2549297995355413924u128 << 64 | 4865540595714422341;
 
-use core::{fmt};
-use rand_core::{RngCore, SeedableRng, Error, impls, le};
+use core::fmt;
+use core::mem::transmute;
+use rand_core::{RngCore, SeedableRng, Error, le};
 
 /// A PCG random number generator (XSL 128/64 (MCG) variant).
 /// 
@@ -95,7 +96,23 @@ impl RngCore for Mcg128Xsl64 {
 
     #[inline]
     fn fill_bytes(&mut self, dest: &mut [u8]) {
-        impls::fill_bytes_via_next(self, dest)
+        // specialisation of impls::fill_bytes_via_next; approx 3x faster
+        let mut left = dest;
+        while left.len() >= 8 {
+            let (l, r) = {left}.split_at_mut(8);
+            left = r;
+            let chunk: [u8; 8] = unsafe {
+                transmute(self.next_u64().to_le())
+            };
+            l.copy_from_slice(&chunk);
+        }
+        let n = left.len();
+        if n > 0 {
+            let chunk: [u8; 8] = unsafe {
+                transmute(self.next_u64().to_le())
+            };
+            left.copy_from_slice(&chunk[..n]);
+        }
     }
 
     #[inline]
