@@ -22,11 +22,12 @@ const MULTIPLIER: u64 = 6364136223846793005;
 /// Congruential Generator, and 32-bit output via "xorshift high (bits),
 /// random rotation" output function.
 /// 
-/// This is equivalent to `pcg_engines::setseq_xsh_rr_64_32`, also known as
-/// `pcg32`.
+/// This is a 64-bit LCG with explicitly chosen stream with the PCG-XSH-RR
+/// output function. This combination is the standard `pcg32`.
 /// 
-/// Despite the name, this implementation uses 16 bytes (128 bit) in order to
-/// include a stream selector. This allows meaningful use of 128-bit seeds.
+/// Despite the name, this implementation uses 16 bytes (128 bit) space
+/// comprising 64 bits of state and 64 bits stream selector. These are both set
+/// by `SeedableRng`, using a 128-bit seed.
 #[derive(Clone)]
 #[cfg_attr(feature="serde1", derive(Serialize,Deserialize))]
 pub struct Lcg64Xsh32 {

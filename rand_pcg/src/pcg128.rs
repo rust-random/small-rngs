@@ -22,10 +22,10 @@ use rand_core::{RngCore, SeedableRng, Error, impls, le};
 /// Congruential Generator, and 64-bit output via "xorshift low (bits),
 /// random rotation" output function.
 /// 
-/// This is equivalent to `pcg_engines::mcg_xsl_rr_128_64`. Note that we
-/// selected this variant for 64-bit generation over `setseq_xsl_rr_128_64`
-/// (also known as `pcg64`), since it is faster and appears to be of
-/// sufficiently high quality.
+/// This is a 128-bit MCG with the PCG-XSL-RR output function.
+/// Note that compared to the standard `pcg64` (128-bit LCG with PCG-XSL-RR
+/// output function), this RNG is faster, also has a long cycle, and still has
+/// good performance on statistical tests.
 /// 
 /// Note: this RNG is only available using Rust 1.26 or later.
 #[derive(Clone)]
