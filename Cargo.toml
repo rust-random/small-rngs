@@ -19,3 +19,9 @@ categories = ["algorithms", "no-std"]
 
 [workspace]
 members = ["rand_pcg", "rand_xorshift"]
+
+[dev-dependencies]
+# for benchmarks
+rand = "0.5"
+rand_pcg = { path = "rand_pcg" }
+rand_xorshift = { path = "rand_xorshift" }
