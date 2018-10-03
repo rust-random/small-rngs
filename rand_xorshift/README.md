@@ -1,6 +1,6 @@
 # rand_xorshift
 
-[![Build Status](https://travis-ci.org/rust-random/small-rngs.svg?branch=master)](https://travis-ci.org/rust-random/small-rngs)
+[![Build Status](https://travis-ci.org/rust-random/small-rngs.svg)](https://travis-ci.org/rust-random/small-rngs)
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/rust-random/small-rngs?svg=true)](https://ci.appveyor.com/project/rust-random/small-rngs)
 [![Latest version](https://img.shields.io/crates/v/rand_xorshift.svg)](https://crates.io/crates/rand_xorshift)
 [![Documentation](https://docs.rs/rand_xorshift/badge.svg)](https://docs.rs/rand_xorshift)
