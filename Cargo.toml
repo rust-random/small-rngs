@@ -15,7 +15,13 @@ categories = ["algorithms", "no-std"]
 
 # [badges]
 # travis-ci = { repository = "rust-random/rand" }
-# appveyor = { repository = "dhardy/rand" }
+# appveyor = { repository = "rust-random/rand" }
 
 [workspace]
-members = []
+members = ["rand_pcg", "rand_xorshift"]
+
+[dev-dependencies]
+# for benchmarks
+rand = "0.5"
+rand_pcg = { path = "rand_pcg" }
+rand_xorshift = { path = "rand_xorshift" }

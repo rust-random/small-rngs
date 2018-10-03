@@ -8,6 +8,11 @@ matrix:
   include:
     - rust: 1.22.0
       env: DESCRIPTION="pinned stable Rust release"
+      script:
+        - cargo test --all
+        # serde1 is not supported on this Rust version:
+        - cargo test --manifest-path rand_pcg/Cargo.toml --package rand_pcg
+        - cargo test --manifest-path rand_xorshift/Cargo.toml --package rand_xorshift --features serde1
 
     - rust: stable
       env: DESCRIPTION="stable Rust release, macOS"
@@ -60,7 +65,9 @@ before_install:
 
 # default script; not used by Trust targets:
 script:
-  - cargo test
+  - cargo test --all
+  - cargo test --manifest-path rand_pcg/Cargo.toml --package rand_pcg --features serde1
+  - cargo test --manifest-path rand_xorshift/Cargo.toml --package rand_xorshift --features serde1
 
 after_script: set +e
 
