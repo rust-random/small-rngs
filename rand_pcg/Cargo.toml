@@ -15,8 +15,8 @@ categories = ["algorithms", "no-std"]
 build = "build.rs"
 
 [badges]
-travis-ci = { repository = "rust-random/rand" }
-appveyor = { repository = "rust-random/rand" }
+travis-ci = { repository = "rust-random/small-rngs" }
+appveyor = { repository = "rust-random/small-rngs" }
 
 [features]
 serde1 = ["serde", "serde_derive", "bincode/i128"]
