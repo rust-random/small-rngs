@@ -13,14 +13,42 @@ This repository houses a collection of random number generators for use with the
 
 All implementations are housed in sub-crates, as follows.
 
-### TODO (first sub-crate)
+### PCG
 
-- link to sub-directory
+Implements a selection of PCG random number generators.
+
+> PCG is a family of simple fast space-efficient statistically good algorithms
+> for random number generation. [Melissa O'Neill, Harvey Mudd College, 2014].
+
+- [Link to repository](https://github.com/rust-random/small-rngs/tree/master/rand_pcg)
+- [Link to crate](https://crates.io/crates/rand_pcg)
+
+### Xorshift
+
+Implements the Xorshift[^1] random number generator.
+
+[^1]: Marsaglia, George (July 2003).
+      ["Xorshift RNGs"](https://www.jstatsoft.org/v08/i14/paper).
+      *Journal of Statistical Software*. Vol. 8 (Issue 14).
+
+- [Link to repository](https://github.com/rust-random/small-rngs/tree/master/rand_xorshift)
+- [Link to crate](https://crates.io/crates/rand_xorshift)
 
 ## Features and dependencies
 
 Wherever possible, all sub-crates are `no_std` compatible, and depend only
 `core` and the [`rand_core`](https://crates.io/crates/rand-core) library.
+
+## Tests
+
+All PRNGs feature at minimum a "true values" test comparing output against
+test vectors provided as part of the specification, as well as "construction"
+tests testing reproducibility of supported seeding methods.
+
+## Benchmarks
+
+This parent crate includes benchmarks of all sub-crates, making benchmarking
+as simple as `cargo +nightly bench`.
 
 # License
 
