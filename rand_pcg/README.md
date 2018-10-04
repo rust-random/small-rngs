@@ -5,7 +5,7 @@
 [![Latest version](https://img.shields.io/crates/v/rand_pcg.svg)](https://crates.io/crates/rand_pcg)
 [![Documentation](https://docs.rs/rand_pcg/badge.svg)](https://docs.rs/rand_pcg)
 [![Minimum rustc version](https://img.shields.io/badge/rustc-1.22+-yellow.svg)](https://github.com/rust-random/rand#rust-version-requirements)
-[![License](https://img.shields.io/crates/l/rand_pcg.svg)](https://github.com/rust-random/rand/tree/master/rand_pcg#license)
+[![License](https://img.shields.io/crates/l/rand_pcg.svg)](https://github.com/rust-random/small-rngs/tree/master/rand_pcg#license)
 
 Implements a selection of PCG random number generators.
 

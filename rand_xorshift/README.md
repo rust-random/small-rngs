@@ -5,7 +5,7 @@
 [![Latest version](https://img.shields.io/crates/v/rand_xorshift.svg)](https://crates.io/crates/rand_xorshift)
 [![Documentation](https://docs.rs/rand_xorshift/badge.svg)](https://docs.rs/rand_xorshift)
 [![Minimum rustc version](https://img.shields.io/badge/rustc-1.22+-yellow.svg)](https://github.com/rust-random/rand#rust-version-requirements)
-[![License](https://img.shields.io/crates/l/rand_xorshift.svg)](https://github.com/rust-random/rand/tree/master/rand_xorshift#license)
+[![License](https://img.shields.io/crates/l/rand_xorshift.svg)](https://github.com/rust-random/small-rngs/tree/master/rand_xorshift#license)
 
 Implements the Xorshift random number generator.
 
@@ -18,7 +18,7 @@ requirements, use a more secure one such as `StdRng` or `OsRng`.
       *Journal of Statistical Software*. Vol. 8 (Issue 14).
 
 Documentation:
-[master branch](https://rust-random.github.io/rand/rand_xorshift/index.html),
+[master branch](https://rust-random.github.io/small-rngs/rand_xorshift/index.html),
 [by release](https://docs.rs/rand_xorshift)
 
 [Changelog](CHANGELOG.md)
