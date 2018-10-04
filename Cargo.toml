@@ -23,5 +23,5 @@ members = ["rand_pcg", "rand_xorshift"]
 [dev-dependencies]
 # for benchmarks
 rand = "0.5"
-rand_pcg = { path = "rand_pcg" }
-rand_xorshift = { path = "rand_xorshift" }
+rand_pcg = { path = "rand_pcg", version = "0.1" }
+rand_xorshift = { path = "rand_xorshift", version = "0.1" }
