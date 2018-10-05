@@ -11,7 +11,7 @@
 //! PCG random number generators
 
 // This is the default multiplier used by PCG for 64-bit state.
-const MULTIPLIER: u128 = 2549297995355413924u128 << 64 | 4865540595714422341;
+const MULTIPLIER: u128 = 0x2360_ED05_1FC6_5DA4_4385_DF64_9FCC_F645;
 
 use core::fmt;
 use core::mem::transmute;
