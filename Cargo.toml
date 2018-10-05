@@ -1,27 +1,5 @@
-[package]
-name = "small-rngs"
-version = "0.0.1"
-authors = ["The Rand Project Developers"]
-license = "MIT/Apache-2.0"
-readme = "README.md"
-repository = "https://github.com/rust-random/small-rngs"
-# documentation = "https://docs.rs/small-rngs"
-# homepage = "https://github.com/rust-random/small-rngs"
-description = """
-Small, simple pseudo-random number generators
-"""
-keywords = ["random", "rng", "prng"]
-categories = ["algorithms", "no-std"]
-
-# [badges]
-# travis-ci = { repository = "rust-random/small-rngs" }
-# appveyor = { repository = "rust-random/small-rngs" }
-
 [workspace]
-members = ["rand_pcg", "rand_xorshift"]
-
-[dev-dependencies]
-# for benchmarks
-rand = "0.5"
-rand_pcg = { path = "rand_pcg", version = "0.1" }
-rand_xorshift = { path = "rand_xorshift", version = "0.1" }
+members = [
+    "rand_pcg",
+    "rand_xorshift",
+]

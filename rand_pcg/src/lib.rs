@@ -7,13 +7,13 @@
 // except according to those terms.
 
 //! The PCG random number generators.
-//! 
+//!
 //! This is a native Rust implementation of a small selection of PCG generators.
 //! The primary goal of this crate is simple, minimal, well-tested code; in
 //! other words it is explicitly not a goal to re-implement all of PCG.
-//! 
+//!
 //! This crate provides:
-//! 
+//!
 //! -   `Pcg32` aka `Lcg64Xsh32`, officially known as `pcg32`, a general
 //!     purpose RNG. This is a good choice on both 32-bit and 64-bit CPUs
 //!     (for 32-bit output).
@@ -33,9 +33,8 @@
 
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
-#![doc(test(attr(allow(unused_variables), deny(warnings))))]
 
-#![cfg_attr(not(all(feature="serde1", test)), no_std)]
+#![no_std]
 
 extern crate rand_core;
 
@@ -44,7 +43,6 @@ extern crate rand_core;
 
 // To test serialization we need bincode and the standard library
 #[cfg(all(feature="serde1", test))] extern crate bincode;
-#[cfg(all(feature="serde1", test))] extern crate std as core;
 
 mod pcg64;
 #[cfg(rust_1_26)] mod pcg128;
