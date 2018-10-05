@@ -41,9 +41,6 @@ extern crate rand_core;
 #[cfg(feature="serde1")] extern crate serde;
 #[cfg(feature="serde1")] #[macro_use] extern crate serde_derive;
 
-// To test serialization we need bincode and the standard library
-#[cfg(all(feature="serde1", test))] extern crate bincode;
-
 mod pcg64;
 #[cfg(rust_1_26)] mod pcg128;
 

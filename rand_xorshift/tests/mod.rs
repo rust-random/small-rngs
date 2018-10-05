@@ -1,5 +1,6 @@
 extern crate rand_core;
 extern crate rand_xorshift;
+#[cfg(all(feature="serde1", test))] extern crate bincode;
 
 use rand_core::{RngCore, SeedableRng};
 use rand_xorshift::XorShiftRng;
@@ -82,12 +83,8 @@ fn test_xorshift_serde() {
 
     let buf = buf.into_inner().unwrap();
     let mut read = BufReader::new(&buf[..]);
-    let mut deserialized: XorShiftRng = bincode::deserialize_from(&mut read).expect("Could not deserialize");
-
-    assert_eq!(rng.x, deserialized.x);
-    assert_eq!(rng.y, deserialized.y);
-    assert_eq!(rng.z, deserialized.z);
-    assert_eq!(rng.w, deserialized.w);
+    let mut deserialized: XorShiftRng = bincode::deserialize_from(&mut read)
+        .expect("Could not deserialize");
 
     for _ in 0..16 {
         assert_eq!(rng.next_u64(), deserialized.next_u64());
