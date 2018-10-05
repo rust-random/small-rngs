@@ -1,6 +1,6 @@
 [package]
 name = "rand_pcg"
-version = "0.1.0" # NB: When modifying, also modify html_root_url in lib.rs
+version = "0.1.1" # NB: When modifying, also modify html_root_url in lib.rs
 authors = ["The Rand Project Developers"]
 license = "MIT/Apache-2.0"
 readme = "README.md"
@@ -25,11 +25,8 @@ serde1 = ["serde", "serde_derive", "bincode/i128"]
 rand_core = { version = "0.3", default-features=false }
 serde = { version = "1", optional = true }
 serde_derive = { version = "^1.0.38", optional = true }
-
-[dev-dependencies]
-# This is for testing serde, unfortunately we can't specify feature-gated dev
-# deps yet, see: https://github.com/rust-lang/cargo/issues/1596
-bincode = "1"
+# required for testing Serde, and we must depend on it to request i128 support
+bincode = { version = "1", optional = true }
 
 [build-dependencies]
 rustc_version = "0.2"
