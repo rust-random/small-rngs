@@ -1,8 +1,10 @@
+#![cfg(rust_1_26)]
 extern crate rand_pcg;
 extern crate rand_core;
+#[cfg(all(feature="serde1", test))] extern crate bincode;
 
 use rand_core::{RngCore, SeedableRng};
-use rand_pcg::*;
+use rand_pcg::{Mcg128Xsl64, Pcg64Mcg};
 
 #[test]
 fn test_mcg128xsl64_construction() {
@@ -48,9 +50,8 @@ fn test_mcg128xsl64_serde() {
 
     let buf = buf.into_inner().unwrap();
     let mut read = BufReader::new(&buf[..]);
-    let mut deserialized: Mcg128Xsl64 = bincode::deserialize_from(&mut read).expect("Could not deserialize");
-
-    assert_eq!(rng.state, deserialized.state);
+    let mut deserialized: Mcg128Xsl64 = bincode::deserialize_from(&mut read)
+        .expect("Could not deserialize");
 
     for _ in 0..16 {
         assert_eq!(rng.next_u64(), deserialized.next_u64());
