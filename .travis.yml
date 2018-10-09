@@ -36,7 +36,7 @@ matrix:
         - cargo doc --no-deps --all --all-features
         - cargo deadlinks --dir target/doc
       after_success:
-        - cd rand_pcg && travis-cargo --only nightly doc-upload
+        - cargo doc --no-deps && cd rand_pcg && travis-cargo --only nightly doc-upload
     # Trust cross-built/emulated targets. We must repeat all non-default values.
     - rust: stable
       sudo: required
