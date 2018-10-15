@@ -6,8 +6,12 @@
 [![Minimum rustc version](https://img.shields.io/badge/rustc-1.22+-yellow.svg)](https://github.com/rust-random/rand#rust-version-requirements)
 [![License](https://img.shields.io/crates/l/small-rngs.svg)](https://github.com/rust-random/small-rngs#license)
 
-This repository houses a collection of random number generators for use with the
-[Rand project](https://github.com/rust-random/rand).
+**This repository has been archived. All contents are now included in
+[the main Rand repository](https://github.com/rust-random/rand).**
+
+This repository existed to house a collection of random number generators with
+small state size. These have now been rolled back into the main repo for ease
+of maintenance.
 
 ## Sub-crates
 
