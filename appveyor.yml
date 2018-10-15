@@ -32,5 +32,6 @@ build: false
 
 test_script:
   - cargo test --all
-  - cargo test --manifest-path rand_pcg/Cargo.toml --package rand_pcg --features serde1
+  # TODO: test with serde1 feature when bincode enables i128 by default:
+  - cargo test --manifest-path rand_pcg/Cargo.toml --package rand_pcg
   - cargo test --manifest-path rand_xorshift/Cargo.toml --package rand_xorshift --features serde1
