@@ -9,7 +9,8 @@ main() {
     fi
 
     cross test --target $TARGET --all
-    cross test --target $TARGET --manifest-path rand_pcg/Cargo.toml --package rand_pcg --features serde1
+  # TODO: test with serde1 feature when bincode enables i128 by default:
+    cross test --target $TARGET --manifest-path rand_pcg/Cargo.toml --package rand_pcg
     cross test --target $TARGET --manifest-path rand_xorshift/Cargo.toml --package rand_xorshift --features serde1
 }
 
